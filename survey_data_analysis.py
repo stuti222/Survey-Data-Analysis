@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Generalized Survey Data Analysis Script
+Generalised Survey Data Analysis Script
 =======================================
 
 This script provides modular functions for:
@@ -42,7 +42,7 @@ def inspect_metadata(df, name="DataFrame"):
     print(df.columns.tolist())
     print(df.head())
 
-def summarize_nulls(df, name="DataFrame"):
+def summarise_nulls(df, name="DataFrame"):
     print(f"\n=== Null Summary for {name} ===")
     print(df.isnull().sum().sort_values(ascending=False))
     print(df[df.isnull().any(axis=1)])
@@ -53,7 +53,7 @@ def check_uniques(df, columns):
 
 def check_duplicates(df, name="DataFrame"):
     duplicates = df.duplicated().sum()
-    print(f"\n Duplicate rows in {name}: {duplicates}")
+    print(f"\nDuplicate rows in {name}: {duplicates}")
 
 # ----------------------------
 # Grouping and Merging
@@ -70,7 +70,7 @@ def compare_question_codes(raw_df, labels_df):
     print("\n=== Questions in raw not in labels ===", raw_questions - label_questions)
     print("=== Questions in labels not in raw ===", label_questions - raw_questions)
 
-def summarize_answers(df):
+def summarise_answers(df):
     print("\n=== Unique answer codes per question ===")
     print(df.groupby('question_code')['answer_code'].nunique())
 
@@ -106,7 +106,7 @@ def plot_answer_distribution(df, question_list):
         if not subset.empty:
             plt.figure()
             subset['answer_code'].value_counts(dropna=False).sort_index().plot(
-                kind='bar', title=f'Answer Distribution for {q}', color='skyblue'
+                kind='bar', title=f'Answer Distribution for {q}', colour='skyblue'
             )
             plt.xlabel('Answer Code')
             plt.ylabel('Count')
@@ -180,11 +180,12 @@ if __name__ == "__main__":
     raw_df, labels_df = load_data('raw_export.csv', 'labels.csv')
 
     inspect_metadata(raw_df, "raw_df")
-    summarize_nulls(raw_df, "raw_df")
+    summarise_nulls(raw_df, "raw_df")
     check_duplicates(raw_df, "raw_df")
     check_uniques(raw_df, ['question_code', 'answer_code'])
 
-    summarize_answers(raw_df)
+    summarise_answers(raw_df)
     plot_answer_distribution(raw_df, ['q1', 'q2'])  # Example questions
     check_age_range(raw_df, 'q3', 16, 64)
     check_respondent_country(raw_df, 'q1', ['UK', 'USA', 'Greece'])
+
