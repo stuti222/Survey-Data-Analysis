@@ -1,5 +1,3 @@
-# Survey-Data-Analysis
-
 # Survey Data Analysis: Structured Approach
 
 ## Project Overview
